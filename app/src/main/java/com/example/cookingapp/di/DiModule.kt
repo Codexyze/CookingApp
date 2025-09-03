@@ -3,6 +3,7 @@ package com.example.cookingapp.di
 import com.example.cookingapp.data.ApiService.ApiService
 import com.example.cookingapp.data.RepoImpl.RepoImpl
 import com.example.cookingapp.domain.Repository.Repository
+import com.example.cookingapp.domain.Usecase.GetAllCategoryUsecase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +17,7 @@ import javax.inject.Singleton
 object DiModule {
 
     @Singleton
-    @Providesad
+    @Provides
     fun RetrofitInstance(): ApiService{
         return Retrofit.Builder().baseUrl("https://www.themealdb.com/api/json/v1/1/")
             .addConverterFactory(GsonConverterFactory.create())
@@ -26,6 +27,11 @@ object DiModule {
     @Provides
     fun repositoryObj(apiService: ApiService): Repository{
         return RepoImpl(apiService = apiService)
+    }
+
+    @Provides
+    fun usecaseObj(repository: Repository): GetAllCategoryUsecase{
+        return GetAllCategoryUsecase(repository = repository)
     }
 
 }
