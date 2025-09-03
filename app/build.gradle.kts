@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id("com.google.dagger.hilt.android")
     id ("kotlin-kapt")
+    kotlin("plugin.serialization") version "2.1.10" //add this line
 }
 
 android {
@@ -84,5 +85,12 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+
+    //Seralization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    //Navigation
+    val nav_version = "2.8.6"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 
 }

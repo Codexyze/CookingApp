@@ -10,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.example.cookingapp.presentation.Navigation.MainApp
 import com.example.cookingapp.presentation.Screens.GetAllCategoryScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
             Surface(color = MaterialTheme.colorScheme.background) {
                 Scaffold {
                     Box(modifier = Modifier.padding(it)){
-                        GetAllCategoryScreen()
+                        MainApp()
                     }
                 }
 

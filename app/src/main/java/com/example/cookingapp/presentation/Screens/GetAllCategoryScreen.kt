@@ -1,5 +1,6 @@
 package com.example.cookingapp.presentation.Screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,11 +35,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.example.cookingapp.presentation.Navigation.DETAILEDSCREEN
 import com.example.cookingapp.presentation.ViewModels.MyViewModel
 @Composable
 fun GetAllCategoryScreen(
-    viewModel: MyViewModel = hiltViewModel<MyViewModel>()
+    viewModel: MyViewModel = hiltViewModel<MyViewModel>(),
+    navController: NavController
 ) {
     val getAllCategoryState = viewModel.getAllCategoryState.collectAsState()
 
@@ -57,7 +61,12 @@ fun GetAllCategoryScreen(
 
                     Card(
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxWidth().clickable{
+                                navController.navigate(DETAILEDSCREEN(
+                                    image = category.strCategoryThumb,
+                                    strCategoryDescription = category.strCategoryDescription
+                                ))
+                            }
                             .height(180.dp), // fixed height for each item
                         shape = RoundedCornerShape(16.dp), // rounded corners
                         elevation = CardDefaults.cardElevation(6.dp) // shadow
