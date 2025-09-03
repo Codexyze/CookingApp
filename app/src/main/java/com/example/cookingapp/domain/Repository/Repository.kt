@@ -1,10 +1,11 @@
 package com.example.cookingapp.domain.Repository
 
 import com.example.cookingapp.data.Remote.Categories
-import retrofit2.http.GET
+import com.example.cookingapp.domain.StateHandeling.ResultState
+import kotlinx.coroutines.flow.Flow
+
 
 interface Repository {
 
-    @GET("categories.php")
-    suspend fun getAllCategory(): Categories
+    suspend fun getAllCategory(): Flow<ResultState<Categories>>
 }
